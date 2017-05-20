@@ -3,26 +3,13 @@ defmodule FaviconFetcher do
   @icon_css_paths ["link[rel='icon']",
 	                 "link[rel='shortcut icon']"]
 
-  def ensure_scheme(website_url) do
-    if String.starts_with?(website_url, "http") do
-      website_url
-    else
-      "http://" <> website_url
-    end
-  end
+  @moduledoc """
+    The main module for scraping websites and extracting favicons.
+  """
 
-  def try_direct_link(website_url) do
-    direct_favicon_link =
-      ensure_scheme(website_url) <> "/favicon.ico"
-
-    response =
-      HTTPoison.get!(direct_favicon_link, [{"User-Agent", @user_agent}], [hackney: [{:follow_redirect, true}], ssl: [versions: [:"tlsv1.2"]]])
-
-    # Is it an image?
-    if is_binary(response.body) do
-      direct_favicon_link
-    end
-  end
+  @doc """
+    Get the favicon URL using FaviconFetcher.favicon(website_url)
+  """
 
   # The longest link is probably the icon with the largest size, so take that.
   # If no icon could be found in the HTML code, try direct link.
@@ -46,6 +33,27 @@ defmodule FaviconFetcher do
       |> Floki.attribute("href")
     end)
     |> Enum.reject(&(&1 == [])) # Remove empty lists
+  end
+
+  def ensure_scheme(website_url) do
+    if String.starts_with?(website_url, "http") do
+      website_url
+    else
+      "http://" <> website_url
+    end
+  end
+
+  def try_direct_link(website_url) do
+    direct_favicon_link =
+      ensure_scheme(website_url) <> "/favicon.ico"
+
+    response =
+      HTTPoison.get!(direct_favicon_link, [{"User-Agent", @user_agent}], [hackney: [{:follow_redirect, true}], ssl: [versions: [:"tlsv1.2"]]])
+
+    # Is it an image?
+    if is_binary(response.body) do
+      direct_favicon_link
+    end
   end
 
   def html_body(url) do
