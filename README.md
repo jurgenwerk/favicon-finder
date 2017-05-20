@@ -1,10 +1,15 @@
 # FaviconFetcher
 
-**TODO: Add description**
+Get the favicon from any website that has one:
+
+```
+iex(2)> FaviconFetcher.favicon "github.com"
+"https://assets-cdn.github.com/favicon.ico"
+```
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+The package can be installed
 by adding `favicon_fetcher` to your list of dependencies in `mix.exs`:
 
 ```elixir
