@@ -1,6 +1,6 @@
-defmodule FaviconFetcherTest do
+defmodule FaviconFinderTest do
   use ExUnit.Case
-  doctest FaviconFetcher
+  doctest FaviconFinder
 
   test "it extracts favicon links" do
     assert 1 + 1 == 2

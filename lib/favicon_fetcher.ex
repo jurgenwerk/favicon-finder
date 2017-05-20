@@ -1,4 +1,4 @@
-defmodule FaviconFetcher do
+defmodule FaviconFinder do
   @user_agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9"
   @icon_css_paths ["link[rel='icon']",
 	                 "link[rel='shortcut icon']"]

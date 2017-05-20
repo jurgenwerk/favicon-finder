@@ -10,11 +10,11 @@ config :ssl, protocol_version: :"tlsv1.2"
 
 # You can configure for your application as:
 #
-#     config :favicon_fetcher, key: :value
+#     config :favicon_finder, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:favicon_fetcher, :key)
+#     Application.get_env(:favicon_finder, :key)
 #
 # Or configure a 3rd-party app:
 #
