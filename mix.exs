@@ -7,7 +7,12 @@ defmodule FaviconFetcher.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     description: description(),
+     package: package(),
+     deps: deps(),
+     name: "Favicon Finder",
+     source_url: "https://github.com/matixmatix/favicon-finder"
+    ]
   end
 
   # Configuration for the OTP application
@@ -30,7 +35,24 @@ defmodule FaviconFetcher.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.11.1"},
-      {:floki, "~> 0.17.0"}
+      {:floki, "~> 0.17.0"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
+    ]
+  end
+
+  defp description do
+    """
+    Extract favicon links from websites.
+    """
+  end
+
+  defp package do
+    # These are the default files included in the package
+    [
+      name: :favicon_finder,
+      maintainers: ["Matic Jurglic"],
+      licenses: ["😂"],
+      links: %{"GitHub" => "https://github.com/matixmatix/favicon-finder"}
     ]
   end
 end
